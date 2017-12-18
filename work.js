@@ -9,9 +9,9 @@
  *然后使用reduce（）将所有字谜组合到一个数组中，最基本情况是字符串长度等于2或1。
  */
 const anagrams = str => {
-	if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
-	return str.split('').reduce((acc, letter, i) =>
-		acc.concat(anagrams(str.slice(0, i) + str.slice(i + 1)).map(val => letter + val)), []);
+    if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
+    return str.split('').reduce((acc, letter, i) =>
+        acc.concat(anagrams(str.slice(0, i) + str.slice(i + 1)).map(val => letter + val)), []);
 };
 
 /**
@@ -41,9 +41,9 @@ const captialize = (str, lowerRest = false) => str.lice(0, 1).toUpperCase() + (l
  * 与原始的非反转字符串进行比较，然后将其转换为tolowerCase（）。
  */
 const palindrome = str => {
-	const s = str.toLowerCase(),
-		replace(/[\W_]/g, "");
-	return s === = s.split("").reverse().join();
+    const s = str.toLowerCase(),
+        replace(/[\W_]/g, "");
+    return s === = s.split("").reverse().join();
 }
 
 /**
@@ -65,10 +65,10 @@ const currentUrl = () => window.location.href;
  * 
  */
 const curry = (fn, arity = fn.length, ...args) => {
-		arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args);
-	}
-	// curry(Math.pow)(2)(10) ->1024
-	// curry(Math.min,3)(10)(50)(2) ->2
+        arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args);
+    }
+    // curry(Math.pow)(2)(10) ->1024
+    // curry(Math.min,3)(10)(50)(2) ->2
 
 /**
  * Deep flatten array
@@ -81,8 +81,8 @@ const deepFlatten = arr => arr.reduce((a, v) => a.concat(Array.isArray(v) ? deep
  * 从b创建一个Set，然后在a上使用Array.filter（），只保留b中不包含的值
  */
 const difference = (a, b) => {
-	const s = new Set(b);
-	return a.filter(x => !s.has(x));
+    const s = new Set(b);
+    return a.filter(x => !s.has(x));
 }
 
 /**
@@ -124,9 +124,9 @@ const factorial = n => n <= 1 ? 1 : n * factorial(n - 1);
  * 使用Array.reduce（）向数组中添加值，后面的一个数等于前面两个数相加之和（前两个除外）。
  */
 const fibonacci = n => {
-		Array(n).fill(0).reduce((acc, val, i) => acc.concat(i > 1 ? acc[i - 1] + acc[i - 2] : i), []);
-	}
-	// fibonacci(5) ->[0,1,1,2,3]
+        Array(n).fill(0).reduce((acc, val, i) => acc.concat(i > 1 ? acc[i - 1] + acc[i - 2] : i), []);
+    }
+    // fibonacci(5) ->[0,1,1,2,3]
 
 /**
  * 过滤数组中的非唯一值
@@ -158,10 +158,10 @@ const arrayMin = arr.Math.min(...arr)
  * 可以省略el来使用window的默认值                                                           
  */
 const getScrollPos = (el = window) => {
-	return {
-		x: (el.pageXOffset !== undefined) ? el.pageXOffset : el.scrollLeft,
-		y: (el.pageYOffset !== undefined) ? el.pageYOffset : el.scrollTop
-	}
+    return {
+        x: (el.pageXOffset !== undefined) ? el.pageXOffset : el.scrollLeft,
+        y: (el.pageYOffset !== undefined) ? el.pageYOffset : el.scrollTop
+    }
 }
 
 /**
@@ -170,3 +170,30 @@ const getScrollPos = (el = window) => {
  */
 const gcd = (x, y) => !y ? x : gcd(y, x % y);
 // gcd (8, 36) -> 4
+
+/**
+ * Head of list 
+ * 返回Arr[0]
+ */
+const head = arr => arr[0]
+
+/**
+ * list c初始化
+ */
+const inital = arr => arr.slice(0, -1)
+
+/**
+ * range 初始化数组
+ * 使用Aray(end -start) 创建所需长度的数组，使用map()来填充范围中的所需值，可以省略start使用默认值
+ * 
+ */
+const initalizeArrayRange = (end, start = 0) => {
+    Array.apply(null, Array(end - start)).map((v, i) => i + start);
+}
+
+/**
+ * 用值初始化数组
+ * 使用 Array（n） 创建所需长度的数组 ，fill（v）以填充所需的值，可以忽略value使用默认值（）。
+ * 
+ */
+const initalizeArray = (n, value = 0) => Array(n).fill(value);
