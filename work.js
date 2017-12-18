@@ -17,7 +17,7 @@ const anagrams = str => {
 /**
  * 数组平均数
  */
-const average = arr => arr.reduce((acc, val) => acc + val, 0) / arr.length\
+const average = arr => arr.reduce((acc, val) => acc + val, 0) / arr.length;
 
 /**
  * 大写数组的每个单词的首字母
@@ -41,9 +41,8 @@ const captialize = (str, lowerRest = false) => str.lice(0, 1).toUpperCase() + (l
  * 与原始的非反转字符串进行比较，然后将其转换为tolowerCase（）。
  */
 const palindrome = str => {
-    const s = str.toLowerCase(),
-        replace(/[\W_]/g, "");
-    return s === = s.split("").reverse().join();
+    const s = str.toLowerCase().replace(/[\W_]/g, "");
+    return s === s.split("").reverse().join();
 }
 
 /**
@@ -197,3 +196,184 @@ const initalizeArrayRange = (end, start = 0) => {
  * 
  */
 const initalizeArray = (n, value = 0) => Array(n).fill(value);
+
+/**
+ * 列表的最后
+ * 返回arr.slice(-1)[0]
+ */
+const last = arr => arr.slice(-1)[0]
+
+/**
+ * 测试功能所花费的时间
+ * 使用performance.now（）获取函数的开始和结束时间，
+ * console.log（）所花费的时间。
+ * 第一个参数是函数名，随后的参数传递给函数。
+ */
+const timeTaken = callback => {
+    console.time('timeTake');
+    const r = callback();
+    console.timeEnd('timeTaken')
+    return r
+}
+
+/**
+ * 来自键值对的对象
+ * 使用Array.reduce() 来创建和组合的键值对
+ */
+const objectFromPairs = arr => arr.reduce((a, v) => (a[v[0]] = v[1], a), {})
+    // objectFromPairs([['a',1],['b',2]]) -> {a: 1, b: 2}
+
+/**
+ * 管道
+ * 使用Array.reduce()通过函数传递值。
+ */
+const pipe = (...funcs) => arg => funcs.reduce((acc, func) => func(acc), arg);
+// pipe(btoa, x => x.toUpperCase())("Test") -> "VGVZDA=="
+
+/**
+ * Powerset
+ * 使用reduce（）与map（）结合来遍历元素，并将其组合成包含所有组合的数组。
+ */
+const powerset = arr => arr.reduce((a, v) = a.concat(a.map(r => [v].concat(r))), [
+    []
+]);
+// powerset([1,2]) -> [[], [1], [2], [2,1]]
+
+/**
+ * 范围内的随机整数
+ * 使用Math.random（）生成一个随机数并将其映射到所需的范围，
+ * 使用Math.floor（）使其成为一个整数。
+ */
+const randomIntegerInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+// randomIntegerInRange(0, 5) -> 2
+
+/**
+ * 范围内的随机数
+ * 使用Math.random（）生成一个随机值，
+ * 使用乘法将其映射到所需的范围。
+ */
+const randomInRange = (min, max) => Math.random() * (max - min) + min;
+
+/**
+ * 随机化的数组的顺序
+ * 使用sort（）重新排序元素，利用Math.random（）来随机排序。
+ */
+const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+// shuffle([1,2,3]) -> [2,3,1]
+
+/**
+ * 重定向到URL
+ * 使用window.location.href或window.location.replace（）重定向到url。
+ *  传递第二个参数来模拟链接点击（true - default）或HTTP重定向（false）。
+ */
+const redirect = (url, asLink = true) => asLink ? window.location.href = url : window.location.replace(url);
+// redirect('https://google.com')
+
+/**
+ * 反转一个字符串
+ * 使用数组解构和Array.reverse（）来颠倒字符串中的字符顺序。
+ * 合并字符以使用join('')获取字符串。
+ */
+const reverseString = str => [...str].reverse().join('');
+// reverseString('foobar') -> 'raboof'
+
+/**
+ * RGB到十六进制
+ * 使用按位左移运算符（<<）和toString（16），
+ * 然后padStart（6，“0”）将给定的RGB参数转换为十六进制字符串以获得6位十六进制值。
+ */
+const rgbToHex = (r, g, b) => ((r << 16) + (g << 8) + b).toString(16).padStart(6, '0');
+// rgbToHex(255, 165, 1) -> 'ffa501'
+
+/**
+ * 滚动到顶部
+ * 使用document.documentElement.scrollTop或
+ * document.body.scrollTop获取到顶部的距离。从顶部滚动一小部分距离。
+ * 使用window.requestAnimationFrame（）来滚动。
+ */
+const scrollToTop = _ => {
+    const c = document.documentElement.scrollTop || document.body.scrollTop;
+    if (c > 0) {
+        window.requestAnimationFrame(scrollToTop);
+        window.scrollTo(0, c - c / 8);
+    }
+};
+// scrollToTop()
+
+/**
+ * 随机数组值
+ * 使用Array.map（）和Math.random（）创建一个随机值的数组。
+ * 使用Array.sort（）根据随机值对原始数组的元素进行排序。
+ */
+const shuffleRandom = arr => {
+    let r = arr.map(Math.random);
+    return arr.sort((a, b) => r[a] - r[b]);
+};
+// shuffleRandom([1, 2, 3, 4])
+
+/**
+ * 数组之间的相似性
+ * 使用filter（）移除不是values的一部分值，使用includes（）确定。
+ */
+const similarity = (arr, values) => arr.filter(v => values.includes(v));
+// similarity([1,2,3], [1,2,4]) -> [1,2]
+
+/**
+ * 按字符串排序（按字母顺序排列）
+ * 使用split（''）分割字符串，sort（）使用localeCompare（），使用join（''）重新组合。
+ */
+const sortCharactersInString = str => str.split('').sort((a, b) => a.localeCompare(b)).join('');
+// sortCharactersInString('cabbage') -> 'aabbceg'
+
+/**
+ * 数组总和
+ * 使用reduce（）将每个值添加到累加器，初始化值为0。
+ */
+const sum = arr => arr.reduce((acc, val) => acc + val, 0);
+
+/**
+ * 列表的tail
+ * 返回arr.slice（1）
+ */
+const tail = arr => arr.length > 1 ? arr.slice(1) : arr;
+// tail([1,2,3]) -> [2,3]
+// tail([1]) -> [1]
+
+/**
+ * 数组唯一值
+ * 使用ES6 Set和... rest操作符去掉所有重复值。
+ */
+const unique = arr => [...new Set(arr)];
+// unique([1,2,2,3,4,4,5]) -> [1,2,3,4,5]
+
+/**
+ * URL参数
+ * 使用match() 与适当的正则表达式来获得所有键值对，适当的map() 。
+ * 使用Object.assign（）和spread运算符（...）将所有键值对组合到一个对象中，
+ * 将location.search作为参数传递给当前url。
+ */
+const getUrlParameters = url => {
+    url.match(/([^?=&]+)(=([^&]*))/g).reduce(
+        (a, v) => (a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1), a), {}
+    );
+};
+// getUrlParameters('http://url.com/page?name=Adam&surname=Smith') -> {name: 'Adam', surname: 'Smith'}
+
+/**
+ * UUID生成器
+ * 使用crypto API生成符合RFC4122版本4的UUID。
+ */
+const uuid = _ => {
+    ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => {
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    });
+};
+// uuid() -> '7982fcfe-5721-4632-bede-6000885be57d'
+
+/**
+ * 验证数字
+ * 使用！isNaN和parseFloat（）来检查参数是否是一个数字，
+ * 使用isFinite（）来检查数字是否是有限的。
+ */
+const validateNumber = n => !isNaN(parseFloat(n)) && isFinite(n) && Number(n) == n;
+// validateNumber('10') -> true
